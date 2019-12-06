@@ -2,8 +2,6 @@
         <ul class="navigation navigation-main" id="sidebar" data-menu="menu-navigation">
             <li class="nav-item"><a href="<?= base_url()?>setup"><i class="feather icon-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
             </li>
-            <li class="nav-item"><a href="<?= base_url()?>setup/crud"><i class="feather icon-zap"></i><span class="menu-title" data-i18n="">Crudlab</span></a>
-            </li>
             <li class="nav-item"><a href="<?= base_url()?>kata_isyarat"><i class="feather icon-home"></i><span class="menu-title" data-i18n="">Kata Isyarat</span></a>
             </li>
             <li class="nav-item"><a href="<?= base_url()?>kategori"><i class="feather icon-home"></i><span class="menu-title" data-i18n="">Kategori</span></a>

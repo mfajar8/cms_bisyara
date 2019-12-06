@@ -10,12 +10,15 @@
             parent::__construct();
             $this->load->model('Kata_isyarat_model');
             $this->load->library('form_validation');
-	    $method=$this->router->fetch_method();
+	          $method=$this->router->fetch_method();
             // if($method != 'ajax_list'){
             //   if($this->session->userdata('status')!='login'){
             //     redirect(base_url('login'));
             //   }
             // }
+            if($this->session->userdata('status')!='login'){
+              redirect(base_url('auth/login'));
+            }
         }
 
         public function index()
@@ -49,7 +52,7 @@
 							$row[] = $Kata_isyarat_model->arti_kata;
 							$row[] = $Kata_isyarat_model->url_gambar;
 							$row[] = $Kata_isyarat_model->id_kategori;
-							
+
               $row[] ="
               <a href='kata_isyarat/edit/$Kata_isyarat_model->id_kata'><i class='m-1 feather icon-edit-2'></i></a>
               <a class='modalDelete' data-toggle='modal' data-target='#responsive-modal' value='$Kata_isyarat_model->id_kata' href='#'><i class='feather icon-trash'></i></a>";
@@ -103,7 +106,7 @@ public function create_action()
 					'arti_kata' => $this->input->post('arti_kata',TRUE),
 					'url_gambar' => $this->input->post('url_gambar',TRUE),
 					'id_kategori' => $this->input->post('id_kategori',TRUE),
-					
+
 );
 
             $this->Kata_isyarat_model->insert($data);
@@ -126,7 +129,7 @@ public function create_action()
 					'arti_kata' => $this->input->post('arti_kata',TRUE),
 					'url_gambar' => $this->input->post('url_gambar',TRUE),
 					'id_kategori' => $this->input->post('id_kategori',TRUE),
-					
+
 );
 
             $this->Kata_isyarat_model->update($this->input->post('id_kata', TRUE), $data);

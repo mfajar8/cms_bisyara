@@ -10,12 +10,15 @@
             parent::__construct();
             $this->load->model('Kategori_model');
             $this->load->library('form_validation');
-	    $method=$this->router->fetch_method();
+	          $method=$this->router->fetch_method();
             // if($method != 'ajax_list'){
             //   if($this->session->userdata('status')!='login'){
             //     redirect(base_url('login'));
             //   }
             // }
+            if($this->session->userdata('status')!='login'){
+              redirect(base_url('auth/login'));
+            }
         }
 
         public function index()
@@ -47,7 +50,7 @@
               $row = array();
               $row[] = $no;
 							$row[] = $Kategori_model->nama_kategori;
-							
+
               $row[] ="
               <a href='kategori/edit/$Kategori_model->id_kategori'><i class='m-1 feather icon-edit-2'></i></a>
               <a class='modalDelete' data-toggle='modal' data-target='#responsive-modal' value='$Kategori_model->id_kategori' href='#'><i class='feather icon-trash'></i></a>";
@@ -99,7 +102,7 @@ public function create_action()
         } else {
             $data = array(
 					'nama_kategori' => $this->input->post('nama_kategori',TRUE),
-					
+
 );
 
             $this->Kategori_model->insert($data);
@@ -120,7 +123,7 @@ public function create_action()
         } else {
             $data = array(
 					'nama_kategori' => $this->input->post('nama_kategori',TRUE),
-					
+
 );
 
             $this->Kategori_model->update($this->input->post('id_kategori', TRUE), $data);

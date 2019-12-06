@@ -13,6 +13,9 @@ class Setup extends MY_Controller{
     // if($this->session->userdata('role')!=1){
     //   redirect(redirect($_SERVER['HTTP_REFERER']));
     // }
+    if($this->session->userdata('status')!='login'){
+      redirect(base_url('auth/login'));
+    }
   }
 
   function index()
