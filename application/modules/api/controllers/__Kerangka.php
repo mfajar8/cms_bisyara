@@ -13,7 +13,7 @@ class ___Kerangka extends MY_Controller{
 
 function createAPI(){
   header('Content-Type: application/json');
-  if(isset($_GET['params'])){//params yang akan dicek
+  if(isset($_GET['id'])){//params yang akan dicek
     //StartPagination
     if(isset($_GET['page'])){//cek parameter page
       $page=$_GET['page'];
@@ -28,7 +28,8 @@ function createAPI(){
     //End Pagination
     //default fungsi dari : getdata($table,$where=null,$limit=9,$offset=0){
     $table='nama_table';
-    $loadDb=$this->Dbs->getdata($table,null,$limitDb,$offsetDb);//database yang akan di load
+    $where=array('id'=>$_GET['id']);
+    $loadDb=$this->Dbs->getdata($table,$where,$limitDb,$offsetDb);//database yang akan di load
     $check=$loadDb->num_rows();
     if($check>0){
       // $get=$loadDb->result(); //Uncomment ini untuk contoh
