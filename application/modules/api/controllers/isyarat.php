@@ -18,7 +18,9 @@ class Isyarat extends MY_Controller{
 
   function get_kata(){
     header('Content-Type: application/json');
+
       //StartPagination
+
       if(isset($_GET['page'])){//cek parameter page
         $page=$_GET['page'];
       }else{
@@ -32,7 +34,12 @@ class Isyarat extends MY_Controller{
       //End Pagination
       //default fungsi dari : getdata($table,$where=null,$limit=9,$offset=0){
       $table='kata_isyarat';
-      $loadDb=$this->Dbs->getdata($table,null,$limitDb,$offsetDb);//database yang akan di load
+      if(isset($_GET['kategori'])){
+      $kategori=$this->input->get('kategori');
+    } else {
+      $kategori = null;
+    }
+      $loadDb=$this->Dbs->getAllKata($kategori);//database yang akan di load
       $check=$loadDb->num_rows();
       if($check>0){
         $get=$loadDb->result(); //Uncomment ini untuk contoh

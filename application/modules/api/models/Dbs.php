@@ -44,4 +44,16 @@ class Dbs extends CI_Model{
       }
   }
 
+  function getAllKata($kategori){
+    $this->db->select('*');
+    $this->db->from('kata_isyarat');
+    $this->db->join('kategori', 'kata_isyarat.id_kategori = kategori.id_kategori', 'left');
+    if($kategori!=null){
+      $this->db->where('nama_kategori', $kategori);
+    }
+    return $this->db->get();
+  }
+
+
+
 }
